@@ -9,7 +9,7 @@ Before running the main code, perform the following steps.
  3. pip install -r requirements.txt
 
 The main code enhance.py can be run in single image mode as in the following example.
-```python enhance.py -i test_images/test_2.png -m dncnn3``
+```python enhance.py -i test_images/test_2.png -m dncnn3```
 
 To run the code in batch mode, follow the example below
 ```python enhance.py -b test_images-m dncnn3 ```
