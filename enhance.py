@@ -1,3 +1,8 @@
+## Image Enhancer
+# Author : Arun Aniyan
+# 13th February 2021
+
+
 import argparse
 import os.path
 from os import listdir
@@ -12,6 +17,8 @@ from utils import utils_model
 
 from models.network_dncnn import DnCNN as net
 
+## Initiliaze Params ##
+
 # Inference Device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Brisq Object
@@ -21,7 +28,6 @@ brisq = BRISQUE()
 model_pool = 'model_zoo'
 
 def main(args):
-    ## Initiliaze Params ##
 
     # Model name
     if args['model'] is None:
@@ -67,10 +73,6 @@ def main(args):
 
     border = sf if task_current == 'sr' else 0  # shave boader to calculate PSNR and SSIM
 
-
-
-
-    # need_H = True if H_path is not None else False
     need_H = False
 
     # Load Model
@@ -92,7 +94,7 @@ def main(args):
         if os.path.exists(mypath):
             files = [f for f in listdir(mypath) if os.path.isfile(os.path.join(mypath, f))]
             print("Found %d files" %(len(files)))
-
+            # Predict for each file and save results
             for item in files:
                 try:
                     filepath = os.path.join(mypath,item)
@@ -102,10 +104,6 @@ def main(args):
         else:
             print("Path does not exist")
             exit()
-
-
-
-
 
 # Function to load image and return tensor with some extra params
 def load_image(infile,n_channels):
@@ -117,18 +115,7 @@ def load_image(infile,n_channels):
     print('Brisque Score of input image : %f' % (brisq.get_score(infile)))
     return img_name,ext,img_L
 
-# Show some quality numbers
-def show_stats(img_E,img_A,border):
-    psnr = util.calculate_psnr(img_E, img_A, border=border)
-    ssim = util.calculate_ssim(img_E, img_A, border=border)
-    print('PSNR: %f'%(psnr))
-    print('SSIM: %f' % (ssim))
-
-def load_pdf(infile):
-    pages = convert_from_path(infile, 500)
-
-
-
+# Load image and do prediction
 def predict(img,n_channels,model,x8):
     img_name, ext, img_L = load_image(img, n_channels)
     img_L = img_L.to(device)
