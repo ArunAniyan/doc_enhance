@@ -16,6 +16,8 @@ To run the code in batch mode, follow the example below
 
 ```python enhance.py -b test_images -m dncnn3 ```
 
+Check the model_zoo directory for available models.
+
 ### Results  for test images
 ![Brisque Scores for test images with different models](https://github.com/ArunAniyan/doc_enhance/blob/main/table.png)
 
