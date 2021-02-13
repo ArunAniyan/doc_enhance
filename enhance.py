@@ -10,7 +10,6 @@ from libsvm import svmutil  # Trick to fix brisque import error in OSX
 from brisque import BRISQUE
 
 import torch
-from pdf2image import convert_from_path
 
 from utils import utils_image as util
 from utils import utils_model
